@@ -1,0 +1,63 @@
+01.
+tem(animal,dinheiro).
+tem(pena,dinheiro).
+tem(pessoa,dinheiro).
+eh(suco,famoso) .
+eh(pena,famoso) .
+eh(pessoa,famoso) .
+
+ehfeliz(X) :- tem(X,dinheiro);
+    	        eh(X, famoso).
+
+02.
+barb(pedro).
+barb(jose).
+barb(rafael).
+barb(lucas).
+
+gobarb(X):- \+ barb(X).
+
+03. 
+palavras(bala,b,a,l,a).
+palavras(cama,c,a,m,a).
+palavras(alta,a,l,t,a).
+palavras(anta,a,n,t,a).
+
+cruzada(H1,H2,V1,V2) :- palavras(H1,H1L1,_,_,H1L4),
+						palavras(H2,H2L1,_,_,H2L4),
+						palavras(V1,V1L1,_,_,V1L4),
+						palavras(V2,V2L1,_,_,V2L4),
+						H1L1 \= V1L1,
+						H1L4 == V2L1,
+						H2L1 == V1L4,
+						H2L4 == V2L4,
+						H1 \= H2, H1 \= V1, H1 \= V2,
+						H2 \= V1, H2 \= V2,
+						V1 \= V2.
+
+04.
+ladrao(jose).
+ladrao(pedro).
+likes(pedro, carne).
+likes(jose, carne).
+likes(jose, bala).
+likes(pedro, chocolate).
+
+poderoubar(X,Y):- 	ladrao(X), 
+			likes(X, Z),
+			likes(Y, Z).
+05.
+influencer(penny,_). 
+influencer(mary,_). 
+influencer(john,_). 
+likes(john,mary). 
+likes(john,penny). 
+likes(penny,wine). 
+likes(mary,juice). 
+
+influencia(X,Y) :- influencer(X,_), 
+  		  influencer(Y,_).
+
+likes_(X,Y) :-  likes(X,Z),
+         likes(Z,Y), 
+         influencia(Z,X).
