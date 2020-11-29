@@ -1,0 +1,55 @@
+01.
+somaDigitos(X, Y) :- U is ((X //  1) mod 10),
+    				 D is ((X // 10) mod 10),
+    				 C is ((X // 100) mod 10),
+    				 Y is U + D + C.
+02.
+digito(0).
+digito(1).
+digito(2).
+digito(3).
+digito(4).
+digito(5).
+digito(6).
+digito(7).
+digito(8).
+digito(9).
+
+criptograma(A,B,C,A,X,A,C,B) :-
+    digito(A),digito(B), digito(C),digito(X),
+    X is 3,
+    A>0,
+    A =\= B, A =\= C,
+    B =\= C,
+    T1 is A*100 + B*10 + C,
+    T2 is A*10 + 3,
+    T3 is A*100 + C*10 + B,
+    T3 is T1 + T2,
+    imprime(T3).
+
+
+imprime(A) :- 	 write(' '), write(A).
+
+03.
+impar(N):- N mod 2 =:= 1.
+par(N):- N mod 2 =:= 0.
+assombroso(1).
+assombroso(Y):-		impar(Y),
+			X2 is (Y * 3) + 1,
+			assombroso(X2);
+			par(Y),
+			X2 is Y / 2,
+			assombroso(X2).
+
+04.
+ehTriangular(0,0) :- !.
+ehTriangular(N, X) :-    N > 0,
+                N1 is N-1,
+                ehTriangular(N1, T1),
+                X is T1 + N.
+
+05.
+divisivel7(X):- R is (X // 1) mod 10,
+	Q is (X // 10),
+	Q1 is Q - (R * 2),
+	mod(Q1,7) =:= 0.
