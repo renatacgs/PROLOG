@@ -1,0 +1,31 @@
+02.
+posicao(1,1,v).
+posicao(1,2,v).
+posicao(1,3,x).
+posicao(2,1,o).
+posicao(2,2,x).
+posicao(2,3,o).
+posicao(3,1,x).
+posicao(3,2,v).
+posicao(3,3,v).
+
+diagonal(P) :- posicao(1, 1, P), posicao(2, 2, P), posicao(3, 3, P), P \== v.
+diagonal(P) :- posicao(1, 3, P), posicao(2, 2, P), posicao(3, 1, P), P\== v.
+linha(P) :- posicao(L, 1, P), posicao(L, 2, P), posicao(L, 2, P), P\== v.
+coluna(P) :- posicao(1, C, P), posicao(2, C, P), posicao(3, C, P), P\== v.
+
+vencedor(P) :- diagonal(P).
+vencedor(P) :- linha(P).
+vencedor(P) :- coluna(P).
+
+
+
+
+
+
+05.
+lista(X, Y, N):-
+auxiliar(X, Y, [], N).
+auxiliar(X, Y, Z, Z):- Y < X.
+auxiliar(X, Y,Z,N):- Y >= X, AUX is Y - 1,
+auxiliar(X, AUX, [Y|Z], N).
