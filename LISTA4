@@ -1,0 +1,34 @@
+01.
+jumpingFrog(X,[]).
+jumpingFrog(X,[H|T]):-	X >= H,
+			jumpingFrog(X,T).
+
+02.
+somapar([X],X).
+
+somapar([H, H1| T],X):-  Hn is H + H1,	
+			 Hn =:= X, !.
+
+somapar([H,H1|T], X):-   Hn is H + H1,
+                         Hn =\= X,
+			 somapar([H|T], X).
+
+
+
+
+04.
+auxiliar([],[],[]).
+auxiliar([X],[X],[]).
+auxiliar([X,Y|Z],[X|A],[Y|B]) :- auxiliar(Z,A,B). 
+
+ordena([],[]).
+ordena([X],[X]).
+ordena([X,Y|Z],S) :- auxiliar([X,Y|Z],A,B), ordena(A,T), ordena(B,T1), intercala(T,T1,S). 
+
+intercala2([],B,B).
+intercala2(A,[],A).
+intercala2([X|A],[Y|B],[X|C]) :- X =< Y, intercala2(A,[Y|B],C).
+intercala2([X|A],[Y|B],[Y|C]) :- X > Y, intercala2([X|A],B,C).
+
+intercala([],[],X).
+intercala(H,H1,X):- ordena(H, R), ordena(H1, R1), intercala2(R, R1, X).
